@@ -52,9 +52,26 @@ public class DialogBox extends HBox {
         return new DialogBox(message, image);
     }
 
-    public static DialogBox getDukeDialog(String message, Image image) {
+    private void changeDialogStyle(String commandType) {
+        switch (commandType) {
+        case "AddCommand":
+            dialog.getStyleClass().add("add-label");
+            break;
+        case "ChangeMarkCommand":
+            dialog.getStyleClass().add("marked-label");
+            break;
+        case "DeleteCommand":
+            dialog.getStyleClass().add("delete-label");
+            break;
+        default:
+            break;
+        }
+    }
+
+    public static DialogBox getDukeDialog(String message, Image image, String commandType) {
         DialogBox dialogBox = new DialogBox(message, image);
         dialogBox.flip();
+        dialogBox.changeDialogStyle(commandType);
         return dialogBox;
     }
 }
